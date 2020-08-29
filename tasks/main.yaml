@@ -1,0 +1,10 @@
+---
+- name: "Apply Templates"
+  template:
+    dest: "{{ item.dest }}"
+    src:  "{{ (item.dest | basename ()) + '.j2' }}"
+    mode: "{{ item.mode | default('0644') }}"
+  notify: "reboot"
+  with_items: "{{ configure_cmdline.templates[(ansible_os_family | lower) + '_' + (ansible_architecture | lower)] | default([]) }}"
+  tags:
+    - cmdline

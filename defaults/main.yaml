@@ -1,0 +1,5 @@
+---
+configure_cmdline:
+  templates:
+    debian_armv7l:
+      - dest: "/boot/cmdline.txt"
